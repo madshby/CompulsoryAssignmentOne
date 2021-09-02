@@ -72,7 +72,8 @@ namespace PetShop.UI
                 foreach (var pet in pets)
                 {
                     Console.WriteLine(StringConstants.HereIsAListOfAllPets);
-                    Console.WriteLine($"{pet.Id} - {pet.Name} - {pet.Type}");
+                    Console.Write($"ID: {pet.Id} - Name: {pet.Name} - Type: {pet.Type.Name} - BirthDate: {pet.BirthDate:dd-MM-yyyy} - SoldDate: {pet.SoldDate:dd-MM-yyyy} - Color: {pet.Color} - Price: {pet.Price}");
+                    Console.WriteLine("");
                 }
             }
         }
@@ -101,29 +102,95 @@ namespace PetShop.UI
             // Name
             Console.WriteLine(StringConstants.PleaseEnterPetName);
             var petName = Console.ReadLine();
-            if (petName.All(char.IsDigit))
+            if (String.IsNullOrEmpty(petName))
             {
+                Console.Clear();
+                Console.WriteLine(StringConstants.ValueCannotBeNullText);
+                return;
+            }
+            else if (petName.Any(char.IsDigit))
+            {
+                Console.Clear();
                 Console.WriteLine(StringConstants.NamesCannotContainNumbersText);
-                Console.WriteLine(StringConstants.PleaseEnterPetName);
-                petName = Console.ReadLine();
+                return;
             }
             // Type
             Console.WriteLine(StringConstants.PleaseEnterPetType);
             PetType newPetType = new PetType();
             var petType = Console.ReadLine();
             newPetType.Name = petType;
+            if (String.IsNullOrEmpty(petType))
+            {
+                Console.Clear();
+                Console.WriteLine(StringConstants.ValueCannotBeNullText);
+                return;
+            }
+            else if (petType.Any(char.IsDigit))
+            {
+                Console.Clear();
+                Console.WriteLine(StringConstants.TypesCannotContainNumbersText);
+                return;
+            }
             // Birthday
             Console.WriteLine(StringConstants.PleaseEnterPetBirthday);
             var petBirthDate = Console.ReadLine();
+            if (String.IsNullOrEmpty(petBirthDate))
+            {
+                Console.Clear();
+                Console.WriteLine(StringConstants.ValueCannotBeNullText);
+                return;
+            }
+            else if (petBirthDate.Any(char.IsLetter))
+            {
+                Console.Clear();
+                Console.WriteLine(StringConstants.DatesCannotContainLettersText);
+                return;
+            }
             // SoldDate
             Console.WriteLine(StringConstants.PleaseEnterPetSoldDate);
             var petSoldDate = Console.ReadLine();
+            if (String.IsNullOrEmpty(petSoldDate))
+            {
+                Console.Clear();
+                Console.WriteLine(StringConstants.ValueCannotBeNullText);
+                return;
+            }
+            else if (petSoldDate.Any(char.IsLetter))
+            {
+                Console.Clear();
+                Console.WriteLine(StringConstants.DatesCannotContainLettersText);
+                return;
+            }
             // Color
             Console.WriteLine(StringConstants.PleaseEnterPetColor);
             var petColor = Console.ReadLine();
+            if (String.IsNullOrEmpty(petColor))
+            {
+                Console.Clear();
+                Console.WriteLine(StringConstants.ValueCannotBeNullText);
+                return;
+            }
+            else if (petColor.Any(char.IsDigit))
+            {
+                Console.Clear();
+                Console.WriteLine(StringConstants.ColorsCannotContainNumbersText);
+                return;
+            }
             // Price
             Console.WriteLine(StringConstants.PleaseEnterPetPrice);
             var petPrice = Console.ReadLine();
+            if (String.IsNullOrEmpty(petPrice))
+            {
+                Console.Clear();
+                Console.WriteLine(StringConstants.ValueCannotBeNullText);
+                return;
+            }
+            else if (petPrice.Any(char.IsLetter))
+            {
+                Console.Clear();
+                Console.WriteLine(StringConstants.PriceCannotContainLettersText);
+                return;
+            }
             
             var pet = new Pet()
             {
@@ -135,8 +202,9 @@ namespace PetShop.UI
                 Price = Convert.ToDouble(petPrice)
             };
             pet = _petService.CreatePet(pet);
+            Console.Clear();
             Console.WriteLine(StringConstants.PetHasBeenCreatedText);
-            Console.Write($"ID: {pet.Id} - Name: {pet.Name} - Type: {pet.Type.Name} - BirthDate: {pet.BirthDate:dd/MM/yyyy} - SoldDate: {pet.SoldDate:dd/MM/yyyy} - Color: {pet.Color} - Price: {pet.Price}");
+            Console.Write($"ID: {pet.Id} - Name: {pet.Name} - Type: {pet.Type.Name} - BirthDate: {pet.BirthDate:dd-MM-yyyy} - SoldDate: {pet.SoldDate:dd-MM-yyyy} - Color: {pet.Color} - Price: {pet.Price}");
             Console.WriteLine("");
         }
 

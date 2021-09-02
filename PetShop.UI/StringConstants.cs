@@ -26,6 +26,11 @@ namespace PetShop.UI
         //Errors
         public const string SearchResultEqualsZero = "Couldn't find a matching pet type, returning to main menu.";
         public const string PetListIsEmptyText = "Couldn't find any results, returning to main menu.";
-        public const string NamesCannotContainNumbersText = "Names cannot contain numbers...";
+        public const string NamesCannotContainNumbersText = "Names cannot contain numbers, returning to main menu.";
+        public const string TypesCannotContainNumbersText = "Types cannot contain numbers, returning to main menu.";
+        public const string DatesCannotContainLettersText = "Dates cannot contain letters, returning to main menu.";
+        public const string ColorsCannotContainNumbersText = "Colors cannot contain numbers, returning to main menu.";
+        public const string PriceCannotContainLettersText = "Price cannot contain letters, returning to main menu.";
+        public const string ValueCannotBeNullText = "Field cannot be empty, returning to main menu.";
     }
 }
